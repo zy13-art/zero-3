@@ -1,0 +1,19 @@
+{
+  "port": 9335,
+  "wallpaperProject": "",
+  "durationSeconds": 8,
+  "motionSeconds": 6,
+  "freezeSeconds": 2,
+  "lineRevealSeconds": 3,
+  "playlist": [
+    "intro-0c5bbc22-3840x2160.mp4",
+    "intro-142de3c3-3840x2160.mp4",
+    "intro-5f85f09c-3840x2160.mp4",
+    "intro-649e948d-3840x2160.mp4"
+  ],
+  "frameRate": 60,
+  "rippleSeconds": 2,
+  "masterFrameRate": 90,
+  "codexExecutable": "",
+  "startupMode": "native-fullscreen-before-codex"
+}

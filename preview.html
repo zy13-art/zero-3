@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>时崎狂三 · Codex 入场动画预览</title>
+<style>
+  :root{color-scheme:dark;font-family:Segoe UI,"Microsoft YaHei",sans-serif;background:#090810;color:#f5e9ef}
+  body{margin:0;padding:28px;display:grid;gap:18px;max-width:1400px;margin-inline:auto}
+  header{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}
+  h1{font-size:24px;margin:0}p{margin:5px 0 0;color:#bcacb7}
+  button{border:1px solid #9f6679;background:#281622;color:#fff;padding:10px 15px;border-radius:7px;cursor:pointer}
+  button:hover{background:#482334}main{background:#000;border:1px solid #403039;box-shadow:0 20px 60px #0008}
+  video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain}
+  nav{display:flex;gap:9px;flex-wrap:wrap}#current{color:#eeb5c5;font-variant-numeric:tabular-nums}
+</style>
+<header><div><h1>时崎狂三 · Codex 入场动画</h1><p>8 秒 · 首秒故障窗口 · 三秒流光线稿 · 曲线变速与原钟轮廓扩散 · Zi-O钟声 · 水波定格 · 末秒拉远 · 4K / 60 fps</p></div><button id="random">随机播放一段</button></header>
+<main><video id="player" controls playsinline></video></main>
+<nav id="choices"></nav><div id="current"></div>
+<script>
+const files=[
+  ['片段 1 · 赤红登场','intro-0c5bbc22-3840x2160.mp4'],
+  ['片段 2 · 蓝天转赤月','intro-142de3c3-3840x2160.mp4'],
+  ['片段 3 · 时钟显现','intro-5f85f09c-3840x2160.mp4'],
+  ['片段 4 · 异色瞳','intro-649e948d-3840x2160.mp4']
+];
+let last=-1;const player=document.querySelector('#player'),current=document.querySelector('#current');
+function play(index){last=index;player.src='films/'+files[index][1];current.textContent=files[index][0];player.play().catch(()=>{});}
+files.forEach(([label],i)=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>play(i);document.querySelector('#choices').append(b)});
+document.querySelector('#random').onclick=()=>{const pool=files.map((_,i)=>i).filter(i=>i!==last);play(pool[Math.floor(Math.random()*pool.length)])};
+play(0);
+</script>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "user-confirmed Zi-O single clock bell",
+  "sourceUrl": "https://www.myinstants.com/en/instant/zi-o-clock-sound-81953/",
+  "sourceSha256": "7a04c98895b0c44b9e69e1ff84035ac420a278722f2b4136f96ccd982dc1a71f",
+  "sourceDurationSeconds": 2.56,
+  "startSeconds": {
+    "649e948d": 5.6,
+    "0c5bbc22": 4.5,
+    "142de3c3": 5.75,
+    "5f85f09c": 3.7
+  },
+  "speed": 1,
+  "pitchChanged": false,
+  "envelopeChanged": false,
+  "loop": false,
+  "reverbAdded": false,
+  "tickingAdded": false,
+  "generatedDuangIncluded": false,
+  "tail": "original natural decay; clip only at the eight-second boundary; no forced extension"
+}

@@ -1,0 +1,10 @@
+*.log
+selection.json
+ChatGPT-original.lnk
+*.pending*
+__pycache__/
+*.pyc
+tools/*renders/
+tools/source-material/
+node_modules/
+*.zip

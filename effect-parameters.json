@@ -1,0 +1,179 @@
+{
+  "saturation": 5,
+  "brightness": 5,
+  "contrast": 5,
+  "shadows": 10,
+  "sharpen": 30,
+  "clarity": 70,
+  "requestedFilters": {
+    "高清": 20,
+    "清晰Ⅱ": 25,
+    "高清增强": 40
+  },
+  "filterImplementation": "user-approved equivalent: denoise, local contrast and sharpening; not native CapCut presets",
+  "lineRevealSeconds": 3,
+  "motionSeconds": 6,
+  "rippleSeconds": 2,
+  "curvePlans": {
+    "0c5bbc22": {
+      "src": [
+        0,
+        1.5,
+        2.5,
+        4.65,
+        6.3
+      ],
+      "dst": [
+        0,
+        2.15,
+        2.8,
+        4.35,
+        6
+      ],
+      "cuts": [
+        2.15,
+        2.8
+      ],
+      "hit": 4.35
+    },
+    "142de3c3": {
+      "src": [
+        0,
+        0.65,
+        2.45,
+        3.25,
+        6.07
+      ],
+      "dst": [
+        0,
+        1.0,
+        2.75,
+        3.6,
+        6
+      ],
+      "cuts": [
+        1.0,
+        2.75
+      ],
+      "hit": 3.6
+    },
+    "5f85f09c": {
+      "src": [
+        0,
+        0.7,
+        1.35,
+        1.85,
+        3.56
+      ],
+      "dst": [
+        0,
+        1.8,
+        2.55,
+        3.5,
+        6
+      ],
+      "cuts": [
+        1.8,
+        2.55
+      ],
+      "hit": 3.5
+    },
+    "649e948d": {
+      "src": [
+        0,
+        2.9,
+        3.85,
+        4.7,
+        5.9
+      ],
+      "dst": [
+        0,
+        2.2,
+        3.2,
+        4.35,
+        6
+      ],
+      "cuts": [
+        3.2,
+        4.35
+      ],
+      "hit": 5.05
+    }
+  },
+  "entranceFirstSecond": [
+    "像素故障",
+    "窗口叠层",
+    "精致辉光",
+    "流光线描"
+  ],
+  "entranceReference": "96d5022dc68f0adc91c269ba1118ae10.mp4",
+  "zoomOutSeconds": [
+    7,
+    8
+  ],
+  "actualBaseFilters": "eq=saturation=1.05:brightness=0.02:contrast=1.05:gamma=1.035; unsharp 5x5 amount .60; unsharp 13x13 amount .32",
+  "actualEquivalentFilters": "hqdn3d .4/.4/.8/.8; unsharp 7x7 .10; unsharp 13x13 .10; contrast 1.01; unsharp 5x5 .16",
+  "tutorialEquivalent": {
+    "流光线描": "bright moving edge streaks; reveal decreases to zero at 3.0 seconds",
+    "梦幻辉光": "low bloom, reference glow 5",
+    "发光Ⅱ": "low bloom, reference glow 5"
+  },
+  "runtime": "3840x2160 H.264 60fps 18Mbps",
+  "master": "7680x4320 HEVC 90fps 42Mbps",
+  "limitations": [
+    "CapCut raw numbers are retained as intent; mappings are approximations, not identical proprietary filters.",
+    "Source 540p/720p; upscaling is not recovered native detail.",
+    "Original baked captions are covered by a lower dark band, with new bilingual text above.",
+    "Audio preserves pitch using per-section tempo; in-section visual speed varies, so lip synchronization is approximate.",
+    "One optical-flow interpolation pass at original540p/720p resolution, followed by enhancement and scaling.",
+    "Only visible native clock fragments are traced. Missing clock geometry is never completed."
+  ],
+  "clockEffect": {
+    "source": "same current original frame",
+    "expansion": "observed outline fragments and edge-born sparks",
+    "completeMissingGeometry": false,
+    "syntheticClock": false,
+    "clip1": "native assembling Roman ring and gears",
+    "clip2": "partially visible red summoning structure only",
+    "clip3": "native Roman ring and gear edges",
+    "clip4": "native silver Roman ring and gears rise at5.05s; only visible portions traced"
+  },
+  "interpolation": "one optical-flow pass from original source to90fps before effects and scaling",
+  "exitBlur": {
+    "startSeconds": 6.18,
+    "endSeconds": 8,
+    "requestedEndStrength": 70,
+    "equivalentGaussianRadius720p": [
+      0.35,
+      18
+    ],
+    "curve": "smoothstep",
+    "order": "after droplet and water refraction; includes zoom-out"
+  },
+  "impactSeconds": {
+    "0c5bbc22": 4.35,
+    "142de3c3": 3.6,
+    "5f85f09c": 3.5,
+    "649e948d": 5.05
+  },
+  "bell": {
+    "name": "user-confirmed Zi-O single clock bell",
+    "sourceUrl": "https://www.myinstants.com/en/instant/zi-o-clock-sound-81953/",
+    "sourceSha256": "7a04c98895b0c44b9e69e1ff84035ac420a278722f2b4136f96ccd982dc1a71f",
+    "sourceDurationSeconds": 2.56,
+    "startSeconds": {
+      "649e948d": 5.6,
+      "0c5bbc22": 4.5,
+      "142de3c3": 5.75,
+      "5f85f09c": 3.7
+    },
+    "speed": 1,
+    "pitchChanged": false,
+    "envelopeChanged": false,
+    "loop": false,
+    "reverbAdded": false,
+    "tickingAdded": false,
+    "generatedDuangIncluded": false,
+    "tail": "original natural decay; clip only at the eight-second boundary; no forced extension"
+  }
+}
