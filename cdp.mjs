@@ -2,7 +2,7 @@
 export function mainTarget(target) {
   try {
     const u=new URL(target.url);
-    if(target.type!=='page'||u.protocol!=='app:'||u.hostname!=='-'||u.pathname!=='/index.html')return false;
+    if(target.type!=='page'||u.protocol!=='app:'||u.hostname!=='-'||u.pathname!=='/index.html'||u.username||u.password||u.port)return false;
     const route=u.searchParams.get('initialRoute')||'/';
     return !/avatar|quick.?chat|detached|mini|popover|notification|browser|review/i.test(route);
   }catch{return false;}

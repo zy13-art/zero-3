@@ -1,83 +1,89 @@
-# zero-3 · 时崎狂三 Codex 启动动画
+# zero-3 · 时崎狂三 Codex 窗口内启动动画
 
-Windows 本地启动动画项目，当前版本 **1.4.0**。四段时崎狂三“刻刻帝”片段随机播放，每段8秒，避免连续重复。使用独立原生全屏播放器先遮住画面，再在背后启动官方Codex，结束后显示客户端。
+Windows 本地动画项目，当前版本 **1.5.0**。四段“刻刻帝”影片随机播放，每段8秒，避免连续重复。启动器连接官方 Codex 的本机调试端口，在唯一主窗口中尽早挂入黑幕，再读取影片、显示首帧，结束后撤除动画层。
 
-**使用前请阅读：[使用须知与兼容性说明](docs/使用须知与兼容性.md)。** 文档包含电脑性能差异、重复进程、八秒以上冷启动、视频解码、多屏、排查与恢复方法。
+**使用前请阅读：[使用须知与兼容性](docs/使用须知与兼容性.md)。** 不修改官方安装文件；官方原入口、客户端内重启、自动更新重启不自动接入。窗口内层不能保证官方窗口第一次绘制前绝无闪帧。
 
-![三秒线稿入场效果预览](docs/preview.jpg)
+![窗口内动画的隔离浏览器预览，不是官方客户端冷启动录像](docs/in-app-preview.png)
 
-## 当前效果
+## 本次更新
 
-- 前3秒流光线稿显现，前1秒加入像素故障和装饰窗口叠层。
-- 前6秒曲线变速、运镜切换和召唤节点震动。
-- 只沿原画已出现的大钟边缘向外扩散描边与粒子；残缺轮廓保持残缺，没有另加表盘。
-- 金色流光双语字幕“ZAPHKIEL / 刻刻帝”。
-- 钟体显现到位后敲响一次Zi-O钟声，保留原音自然强弱和拖尾，不加时针声、不循环、不拉长。
-- 最后2秒中心滴水、水波扩散及逐渐模糊，最后1秒变焦拉远。
+- 默认在 Codex 窗口内播放；不等待聊天内容或整个页面加载完成，不再默认弹出独立播放器。
+- 黑幕先于影片读取/传输，确认首帧后显像；结束、Esc、跳过或异常时清理自己的资源并恢复此前焦点。
+- 四段4K60影片更新为清晰度修正版，只增强已有亮度细节，不生成新的人物纹理。
+- 增加指定快捷方式修复、原件备份，并清除旧链接的官方分组标识。
+- [更新记录](docs/CHANGELOG.md) · [视频核验摘要](docs/validation-v1.5.0.json) · [同帧对比](docs/clarity-comparison.png)。对比图从左到右是1.4.0基准、先前微增强版、本次清晰度版。
 
 ## 获取与运行
 
-通过Git克隆，或在本页选择 **Code → Download ZIP** 后完整解压。仓库包含播放器、源码、四段启动影片和四段8K存档，总体积约430MB；正式启动只读取 `films/`。
+1. 使用 Windows 10/11 x64，安装微软商店的官方 Codex 和 **Node.js 22.3或更新版本**。
+2. 克隆仓库或 Code → Download ZIP，完整解压到普通可写目录。下载体积较大，正式启动只读取 `films/`。
+3. 保存工作并正常完全退出 Codex，包括后台实例，再双击 `CodexKurumiIntro.exe`。Esc 或右上角按钮可跳过。
 
-1. 使用Windows x64电脑，并安装官方Codex。将项目放在普通可写目录。
-2. 直接双击 `CodexKurumiIntro.exe` 试用；右上角“跳过”或Esc可退出动画。
-3. 如需接入现有桌面图标，在项目目录运行：
+`nodeExecutable` 留空时依次查找已安装的 Codex 任务运行时、Program Files 下的 Node、PATH。找不到时，在 `config.json` 填写本机 `node.exe` 绝对路径。公开配置不含个人路径。
+
+接入现有桌面 `ChatGPT.lnk`，并保留原件：
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Install-DesktopShortcut.ps1
 ```
 
-默认修改桌面的 `ChatGPT.lnk` 并保留图标。首次安装会在项目目录保存原快捷方式；如图标名称或位置不同，可以显式指定：
+其他名称或位置使用 `-ShortcutPath`。开始菜单、任务栏或仍绕过动画的旧链接，可显式修复指定的现有文件：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Install-DesktopShortcut.ps1 -ShortcutPath 'D:\Desktop\Codex.lnk'
+.\Repair-LaunchShortcuts.ps1 -ShortcutPaths @(
+  "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\ChatGPT.lnk"
+)
 ```
 
-恢复入口：
+只修改目标属于官方Codex或本包的链接；原件保存在本机 `shortcut-backups/`，重复修复不会覆盖。对相同文件运行同一命令并加 `-Restore` 即恢复。桌面安装脚本对应 `Restore-DesktopShortcut.ps1`，两套备份流程不要混用。
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Restore-DesktopShortcut.ps1
-```
+任务栏需要固定**修正后的快捷方式**；点击已运行应用的按钮通常只是切换窗口。固定原官方应用仍会绕过本项目。
 
-只预览动画而不启动Codex：
+## 画面与声音
 
-```powershell
-.\CodexKurumiIntro.exe --preview
-```
-
-`preview.html` 可以选择查看各段影片。源码更新后运行 `Build-NativeStartup.ps1`，用系统现有.NET Framework编译器重建原生播放器。正常播放不需要Node、Python或FFmpeg。
-
-## 配置与播放规格
+- 前3秒流光线稿，前1秒像素故障和装饰窗口；前6秒曲线变速、运镜和召唤节点震动。
+- 只沿原画已出现的大钟边缘扩散轮廓与粒子，残缺部分保持残缺，没有额外绘制的表盘。
+- 金色流光双语字幕“ZAPHKIEL / 刻刻帝”；钟体显现后敲响一次 Zi-O 钟声，保留原音自然衰减，不加时针声、不循环或拉长。
+- 6～8秒中心滴水、水波与逐渐模糊，7～8秒拉远退出。清晰度修正不撤销这段有意设置的模糊。
 
 | 内容 | 规格 / 位置 |
 | --- | --- |
-| 默认启动影片 | `films/`，3840×2160、60fps、H.264 + AAC，各8秒 |
-| 高规格存档 | [masters/](masters/)，7680×4320、90fps、HEVC + AAC，各8秒 |
-| 画面参数 | `effect-parameters.json`，保留剪映意向数值与等效处理参数 |
-| 文件校验 | `manifest.json`，影片分辨率、帧数、时长和SHA256 |
-| 声音来源 | `assets/source.json`，确认使用的单次钟声及各段落点 |
-| 客户端和壁纸路径 | `config.json`，公开版本默认留空个人路径 |
+| 当前启动影片 | `films/`，3840×2160、60fps、480帧、H.264 + AAC，各8秒 |
+| 历史8K存档 | `masters/`，7680×4320、90fps、HEVC，保留1.4.0版本，未应用本次清晰度修正 |
+| 效果参数 | `effect-parameters.json`，剪映意向数值与等效处理记录 |
+| 影片校验 | `manifest.json`，影片规格、时长、SHA256 |
+| 验证摘要 | `docs/validation-v1.5.0.json`，四片全帧与音频包核验 |
 
-客户端默认自动查找微软商店的官方安装。可选壁纸项目需另行配置 `wallpaperProject`，本仓库没有打包外部CodexChatWallpaper。默认后台启动沿用该集成的资料目录与本机调试端口，详情见须知。
+原始素材为540p/720p、30fps。4K/8K是输出尺寸，不能等同原生高分辨率细节；没有16K成片。此次在1.4.0成片上增强亮度，没有再次缩放、补帧、变速、重绘面部或添加虚构纹理。无损阶段的色度和保护区保持原样，启动MP4另有有损编码误差，不承诺绝对零误差。FFV1验证母版不打包进本仓库。
 
-原片为540p/720p，经光流插帧和缩放；输出规格不代表原生4K/8K细节。剪映专有滤镜按确认方案用调色、降噪、局部对比和锐化等效实现。8K90用于存档，优先以4K60保证启动兼容与流畅；没有16K成片。
+## 配置与诊断
 
-**八秒是影片时长，不是Codex启动时限。** 原生播放器不等待聊天页面。如果客户端启动更慢，动画仍正常结束，客户端会继续启动。系统互斥锁防止同目录重复播放；多个副本、旧脚本或其他启动入口仍可能带来进程和焦点冲突，见兼容性说明。
+`codexExecutable`、`wallpaperProject`、`nodeExecutable` 默认留空。客户端路径和 Node 可自动查找；可选外部 CodexChatWallpaper 需自行配置，本仓库不打包或替换该壁纸工程。
 
-## 开发与制作留档
+启动沿用 `127.0.0.1:9335` 与 `%LOCALAPPDATA%\CodexChatWallpaper\profile`。同机程序可能通过调试端口控制已登录客户端；撤掉动画不关闭连接，需完全退出该实例后从官方普通入口打开。详见使用须知。
 
-`NativeStartup.cs` 为当前播放器，`Start-CodexForIntro.ps1` 为后台启动；`intro.mjs` 等CDP覆盖层保留为可选旧版诊断工具，不是正常启动路径。
-
-测试需Windows、Node 22+和可用的.NET Framework/WPF环境；测试使用隔离的临时文件，不修改真实桌面入口，也不启动真实客户端：
+`intro.log` 记录遮罩、首帧和结束，`native-startup.log` 记录入口，`bootstrap.log` 记录客户端与壁纸启动。八秒是**影片时长**；等待主文档、传输和解码会增加总耗时。
 
 ```powershell
-npm test
+.\CodexKurumiIntro.exe --preview  # 独立预览，不启动Codex
+.\CodexKurumiIntro.exe --native   # 原独立播放器，后台启动Codex
+node .\intro.mjs --check          # 只检查配置和影片
+node .\preview-server.mjs         # 隔离浏览器预览，不连接Codex
 ```
 
-剪辑脚本与阶段依赖见 [tools/README.md](tools/README.md)。它们记录制作过程，缺少原始素材和中间文件时不能直接重新导出整套影片。
+窗口内播放失败不会自动再播放一份独立动画。
+
+## 开发与验证
+
+`NativeStartup.cs` 是入口与互斥控制，`intro.mjs` 是窗口内控制器，`overlay.mjs` 是临时动画层，`Verify-CodexListener.ps1` 独立校验监听进程。修改C#后运行 `Build-NativeStartup.ps1`。
+
+Windows下运行 `npm test`；测试使用临时文件和模拟连接，不启动或控制真实Codex。制作算法另有 `python tools/test_clarity_v2_luma.py`；留档及依赖见 [tools/README.md](tools/README.md)。
+
+本次验证了安全测试、隔离浏览器的播放/跳过/清理，以及四片全帧与音频包。**这些不等同新版官方客户端冷启动测试**；设备、驱动与客户端更新后的实际时序仍需本机确认。
 
 ## 来源与许可
 
-原CDP外观层参考 [白璃 · Baili for Codex](https://github.com/chenyi380/baili-codex)，代码保留上游MIT许可与署名，见 [LICENSE](LICENSE) 和 [UPSTREAM-LICENSE.txt](UPSTREAM-LICENSE.txt)。本项目不是OpenAI官方功能。
+窗口内外观层参考 [Baili for Codex](https://github.com/chenyi380/baili-codex)；早期遮罩、首帧判据与清理原则参考 [dsh-startup-screen](https://github.com/6shenhonghong9/dsh-startup-screen) 和 [dsh-wallpaper-engine](https://github.com/elysia395/dsh-wallpaper-engine)。没有引入DSH专用宿主接口或音画素材。代码保留MIT许可和署名，见 [LICENSE](LICENSE)、[UPSTREAM-LICENSE.txt](UPSTREAM-LICENSE.txt)。本项目为非官方社区作品。
 
-《约会大作战》角色、动画片段、对白、音乐与Zi-O钟声属于各自权利人，代码MIT许可不包含这些媒体。钟声来自 [Zi-o clock sound](https://www.myinstants.com/en/instant/zi-o-clock-sound-81953/)。仓库不包含私人聊天视频、原始快捷方式、个人路径配置或本机日志。
+动漫角色、片段、对白、音乐与Zi-O钟声属于各自权利人，代码许可不包含这些媒体。钟声来自 [Zi-o clock sound](https://www.myinstants.com/en/instant/zi-o-clock-sound-81953/)，记录见 `assets/source.json`。

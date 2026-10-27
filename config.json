@@ -15,5 +15,6 @@
   "rippleSeconds": 2,
   "masterFrameRate": 90,
   "codexExecutable": "",
-  "startupMode": "native-fullscreen-before-codex"
+  "startupMode": "in-app-overlay",
+  "nodeExecutable": ""
 }

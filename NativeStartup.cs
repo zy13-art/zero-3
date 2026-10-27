@@ -22,6 +22,8 @@ namespace KurumiStartup {
         public string[] playlist { get; set; }
         public string codexExecutable { get; set; }
         public int durationSeconds { get; set; }
+        public string startupMode { get; set; }
+        public string nodeExecutable { get; set; }
     }
 
     public static class NativeStartup {
@@ -43,6 +45,9 @@ namespace KurumiStartup {
                 try {
                     var settings = Json.Deserialize<Settings>(File.ReadAllText(Path.Combine(Root,"config.json"), Encoding.UTF8));
                     bool preview = args.Contains("--preview");
+                    if(!preview && !args.Contains("--native") && settings.startupMode == "in-app-overlay") {
+                        return RunInApp(settings,args);
+                    }
                     string requested = args.FirstOrDefault(x => x.StartsWith("--film=", StringComparison.Ordinal));
                     var films = settings.playlist ?? new string[0];
                     if (films.Length == 0) throw new InvalidDataException("The intro playlist is empty.");
@@ -65,6 +70,58 @@ namespace KurumiStartup {
                     return 1;
                 } finally { lease.ReleaseMutex(); }
             }
+        }
+
+        private static int RunInApp(Settings settings,string[] args) {
+            settings.nodeExecutable = ResolveNodeExecutable(settings.nodeExecutable);
+            string script = Path.Combine(Root,"intro.mjs");
+            if(!File.Exists(script)) throw new FileNotFoundException("The in-app startup launcher was not found.",script);
+            string arguments = QuoteArgument(script) + " --bootstrap-started";
+            foreach(string arg in args.Where(x => x.StartsWith("--film=",StringComparison.Ordinal))) arguments += " " + QuoteArgument(arg);
+            using(var child = new Process { StartInfo = new ProcessStartInfo {
+                FileName = settings.nodeExecutable, Arguments = arguments, WorkingDirectory = Root,
+                UseShellExecute = false, CreateNoWindow = true, WindowStyle = ProcessWindowStyle.Hidden
+            } }) {
+                child.Start();
+                Log("InAppLauncherStarted","helperPid",child.Id);
+                StartBootstrap();
+                // Keep the installation mutex until the bounded Node startup ends.
+                // A failed in-app film never starts a second native animation.
+                if(!child.WaitForExit(90000)) { Log("InAppLauncherTimeout"); return 1; }
+                Log("InAppLauncherFinished","exitCode",child.ExitCode);
+                return child.ExitCode;
+            }
+        }
+
+        private static string ResolveNodeExecutable(string configured) {
+            if(!String.IsNullOrWhiteSpace(configured)) {
+                if(!Path.IsPathRooted(configured) || !File.Exists(configured))
+                    throw new FileNotFoundException("The configured installed Node runtime was not found.",configured);
+                return Path.GetFullPath(configured);
+            }
+            var candidates = new List<string> {
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),".cache","codex-runtimes","codex-primary-runtime","dependencies","node","bin","node.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),"nodejs","node.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),"nodejs","node.exe")
+            };
+            foreach(string entry in (Environment.GetEnvironmentVariable("PATH") ?? "").Split(Path.PathSeparator)) {
+                string directory = entry.Trim().Trim('"');
+                if(Path.IsPathRooted(directory)) candidates.Add(Path.Combine(directory,"node.exe"));
+            }
+            foreach(string candidate in candidates)
+                if(Path.IsPathRooted(candidate) && File.Exists(candidate)) return Path.GetFullPath(candidate);
+            throw new FileNotFoundException("Node.js 22.3+ was not found. Install Node.js or set nodeExecutable in config.json to its absolute path.");
+        }
+
+        private static string QuoteArgument(string value) {
+            var result = new StringBuilder("\""); int slashes = 0;
+            foreach(char c in value) {
+                if(c == '\\') { slashes++; continue; }
+                if(c == '"') { result.Append('\\',slashes*2+1); result.Append(c); }
+                else { result.Append('\\',slashes); result.Append(c); }
+                slashes = 0;
+            }
+            result.Append('\\',slashes*2); result.Append('"'); return result.ToString();
         }
 
         internal static void Log(string name, params object[] fields) {
@@ -104,7 +161,7 @@ namespace KurumiStartup {
         private IntPtr handle;
         private bool rendered, opened, finished;
         private int checkpoint;
-        private long openedAt;
+        private long openedAt, mediaRequestedAt;
 
         internal Splash(string filmPath, bool previewOnly) {
             path = filmPath; preview = previewOnly;
@@ -140,7 +197,8 @@ namespace KurumiStartup {
             media.MediaOpened += (s,e) => {
                 opened = true; openedAt = NativeStartup.Clock.ElapsedMilliseconds;
                 NativeStartup.Log("MediaOpened","width",media.NaturalVideoWidth,"height",media.NaturalVideoHeight,
-                    "durationSeconds",media.NaturalDuration.HasTimeSpan ? media.NaturalDuration.TimeSpan.TotalSeconds : 0);
+                    "durationSeconds",media.NaturalDuration.HasTimeSpan ? media.NaturalDuration.TimeSpan.TotalSeconds : 0,
+                    "openWaitMs",openedAt-mediaRequestedAt);
             };
             media.MediaEnded += (s,e) => {
                 NativeStartup.Log("MediaEnded","positionSeconds",media.Position.TotalSeconds);
@@ -165,6 +223,8 @@ namespace KurumiStartup {
                 "left",actual.Left,"top",actual.Top,"width",actual.Right-actual.Left,"height",actual.Bottom-actual.Top);
             // No app, debugger, network, or chat-DOM prerequisite before this point.
             if(!preview) NativeStartup.StartBootstrap();
+            mediaRequestedAt = NativeStartup.Clock.ElapsedMilliseconds;
+            NativeStartup.Log("MediaRequested","openTimeoutMs",8000);
             media.Source = new Uri(path,UriKind.Absolute);
             media.Play(); watchdog.Start();
         }
@@ -176,9 +236,10 @@ namespace KurumiStartup {
                 NativeStartup.Log("MediaProgress","positionSeconds",position,"foreground",Native.GetForegroundWindow() == handle);
             }
             // Separate from playback duration: never leave a failed decoder covering the desktop.
-            if((!opened && NativeStartup.Clock.ElapsedMilliseconds > 8000) ||
+            if((!opened && NativeStartup.Clock.ElapsedMilliseconds-mediaRequestedAt > 8000) ||
                (opened && NativeStartup.Clock.ElapsedMilliseconds-openedAt > 14000)) {
-                NativeStartup.Log("PlaybackTimeout","positionSeconds",position);
+                NativeStartup.Log("PlaybackTimeout","positionSeconds",position,
+                    "phase",opened ? "playback" : "open","openWaitMs",(opened ? openedAt : NativeStartup.Clock.ElapsedMilliseconds)-mediaRequestedAt);
                 Environment.ExitCode = 1; Finish("Timeout");
             }
         }

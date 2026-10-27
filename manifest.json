@@ -44,8 +44,8 @@
     {
       "file": "intro-0c5bbc22-3840x2160.mp4",
       "folder": "runtime",
-      "bytes": 22306095,
-      "sha256": "1368b6b7e00dd0cf5acf1dd25cdcb8c685e8d5281c8bb7615d0a44b73b39f6d8",
+      "bytes": 31183895,
+      "sha256": "3d81b01ac5adfd9d14b6c187e89c732fd2911a1c112b13d41a67e70da2f76639",
       "width": 3840,
       "height": 2160,
       "fps": 60,
@@ -60,8 +60,6 @@
         8
       ],
       "exitBlurTarget": 70,
-      "preZoomDetailEnergyRatio": 0.23488,
-      "rippleMeanPixelDeviation": 2.8273,
       "impactSeconds": 4.35,
       "audioCodec": "aac",
       "audioStatus": "original-voice-bgm-plus-single-unmodified-zio-bell",
@@ -70,17 +68,24 @@
       "bellDurationSeconds": 2.56,
       "bellNaturalEndSeconds": 7.0600000000000005,
       "wholeMixConstantGain": 1.0,
-      "audioDecodedCorrelationToMix": 0.9995586418126062,
-      "audioDecodedRmseToMix": 0.003115743165835738,
-      "videoPacketHash": "SHA256=8cead6184d152bc86bf571c5cc52202f5afe599338978a9f9ab2178d8f797343",
       "clockSource": "native-visible-fragments",
-      "syntheticClock": false
+      "syntheticClock": false,
+      "sourceBaselineSha256": "1368b6b7e00dd0cf5acf1dd25cdcb8c685e8d5281c8bb7615d0a44b73b39f6d8",
+      "archivedBaselineMeasurements": {
+        "videoPacketHash": "SHA256=8cead6184d152bc86bf571c5cc52202f5afe599338978a9f9ab2178d8f797343",
+        "preZoomDetailEnergyRatio": 0.23488,
+        "rippleMeanPixelDeviation": 2.8273,
+        "audioDecodedCorrelationToMix": 0.9995586418126062,
+        "audioDecodedRmseToMix": 0.003115743165835738
+      },
+      "clarityEnhanced": true,
+      "clarityVersion": 2
     },
     {
       "file": "intro-142de3c3-3840x2160.mp4",
       "folder": "runtime",
-      "bytes": 24417469,
-      "sha256": "e545070a34509e29c0cd1e2bffdc78ec0f7b0b29cdd479ab81e2bc1a751dcb2f",
+      "bytes": 36920386,
+      "sha256": "0565cd95286b245ded995a7e3bf8fb0d6ab3852945f0e5e6c88ecbc3f6f2517d",
       "width": 3840,
       "height": 2160,
       "fps": 60,
@@ -95,8 +100,6 @@
         8
       ],
       "exitBlurTarget": 70,
-      "preZoomDetailEnergyRatio": 0.16805,
-      "rippleMeanPixelDeviation": 4.75648,
       "impactSeconds": 3.6,
       "audioCodec": "aac",
       "audioStatus": "original-voice-bgm-plus-single-unmodified-zio-bell",
@@ -105,17 +108,24 @@
       "bellDurationSeconds": 2.56,
       "bellNaturalEndSeconds": 8,
       "wholeMixConstantGain": 1.0,
-      "audioDecodedCorrelationToMix": 0.9997185688105966,
-      "audioDecodedRmseToMix": 0.0026385081000626087,
-      "videoPacketHash": "SHA256=9c5dc582e500fb6434cabc1bae06692f093f82c58dce7b7e13977145d80fe50c",
       "clockSource": "native-visible-fragments",
-      "syntheticClock": false
+      "syntheticClock": false,
+      "sourceBaselineSha256": "e545070a34509e29c0cd1e2bffdc78ec0f7b0b29cdd479ab81e2bc1a751dcb2f",
+      "archivedBaselineMeasurements": {
+        "videoPacketHash": "SHA256=9c5dc582e500fb6434cabc1bae06692f093f82c58dce7b7e13977145d80fe50c",
+        "preZoomDetailEnergyRatio": 0.16805,
+        "rippleMeanPixelDeviation": 4.75648,
+        "audioDecodedCorrelationToMix": 0.9997185688105966,
+        "audioDecodedRmseToMix": 0.0026385081000626087
+      },
+      "clarityEnhanced": true,
+      "clarityVersion": 2
     },
     {
       "file": "intro-5f85f09c-3840x2160.mp4",
       "folder": "runtime",
-      "bytes": 25996739,
-      "sha256": "cf808b3817c622b4721067211f4d0bb73fc2911524c808c3955da05d84a77d70",
+      "bytes": 37026277,
+      "sha256": "ddb333eb7cfec66e9ea8c580907d1f311bac8004696568f5ea9b30df844232d8",
       "width": 3840,
       "height": 2160,
       "fps": 60,
@@ -130,8 +140,6 @@
         8
       ],
       "exitBlurTarget": 70,
-      "preZoomDetailEnergyRatio": 0.19526,
-      "rippleMeanPixelDeviation": 3.13617,
       "impactSeconds": 3.5,
       "audioCodec": "aac",
       "audioStatus": "original-voice-bgm-plus-single-unmodified-zio-bell",
@@ -140,17 +148,24 @@
       "bellDurationSeconds": 2.56,
       "bellNaturalEndSeconds": 6.26,
       "wholeMixConstantGain": 1.0,
-      "audioDecodedCorrelationToMix": 0.9999000256797155,
-      "audioDecodedRmseToMix": 0.0014739732723683119,
-      "videoPacketHash": "SHA256=a6b0fc75cbe1787546882f0e8f561b46d1ecaef25fb2d103245517e06d21bd4f",
       "clockSource": "native-visible-fragments",
-      "syntheticClock": false
+      "syntheticClock": false,
+      "sourceBaselineSha256": "cf808b3817c622b4721067211f4d0bb73fc2911524c808c3955da05d84a77d70",
+      "archivedBaselineMeasurements": {
+        "videoPacketHash": "SHA256=a6b0fc75cbe1787546882f0e8f561b46d1ecaef25fb2d103245517e06d21bd4f",
+        "preZoomDetailEnergyRatio": 0.19526,
+        "rippleMeanPixelDeviation": 3.13617,
+        "audioDecodedCorrelationToMix": 0.9999000256797155,
+        "audioDecodedRmseToMix": 0.0014739732723683119
+      },
+      "clarityEnhanced": true,
+      "clarityVersion": 2
     },
     {
       "file": "intro-649e948d-3840x2160.mp4",
       "folder": "runtime",
-      "bytes": 24635394,
-      "sha256": "2bf947813056718ae94b6d3f15741601de3faedddcea9e10f286284bab832b30",
+      "bytes": 30421957,
+      "sha256": "79354b1f4d2524a509f8878d764d9052d3150f8f56dc21a98a175bacb5153ac4",
       "width": 3840,
       "height": 2160,
       "fps": 60,
@@ -165,8 +180,6 @@
         8
       ],
       "exitBlurTarget": 70,
-      "preZoomDetailEnergyRatio": 0.20306,
-      "rippleMeanPixelDeviation": 3.22919,
       "impactSeconds": 5.05,
       "audioCodec": "aac",
       "audioStatus": "original-voice-bgm-plus-single-unmodified-zio-bell",
@@ -175,11 +188,18 @@
       "bellDurationSeconds": 2.56,
       "bellNaturalEndSeconds": 8,
       "wholeMixConstantGain": 1.0,
-      "audioDecodedCorrelationToMix": 0.999877852933212,
-      "audioDecodedRmseToMix": 0.0016854848945513368,
-      "videoPacketHash": "SHA256=65f52cd2f99022c4c3137d3764827e40d35dceb915acee939229026968c7a6d1",
       "clockSource": "native-visible-fragments",
-      "syntheticClock": false
+      "syntheticClock": false,
+      "sourceBaselineSha256": "2bf947813056718ae94b6d3f15741601de3faedddcea9e10f286284bab832b30",
+      "archivedBaselineMeasurements": {
+        "videoPacketHash": "SHA256=65f52cd2f99022c4c3137d3764827e40d35dceb915acee939229026968c7a6d1",
+        "preZoomDetailEnergyRatio": 0.20306,
+        "rippleMeanPixelDeviation": 3.22919,
+        "audioDecodedCorrelationToMix": 0.999877852933212,
+        "audioDecodedRmseToMix": 0.0016854848945513368
+      },
+      "clarityEnhanced": true,
+      "clarityVersion": 2
     },
     {
       "file": "intro-0c5bbc22-7680x4320-90fps.mp4",
@@ -322,7 +342,19 @@
       "syntheticClock": false
     }
   ],
-  "version": "1.4.0",
-  "startup": "native opaque topmost full-monitor splash before asynchronous Codex bootstrap",
-  "clockEffect": "current native visible edges only; no geometric completion"
+  "version": "1.5.0",
+  "startup": "temporary video layer inside the verified Codex main window; earliest available main document, no chat-ready prerequisite",
+  "clockEffect": "current native visible edges only; no geometric completion",
+  "startupMode": "in-app-overlay",
+  "eightKArchives": "unchanged v1.4.0 archives; clarity-v2 applies to runtime films only",
+  "clarityEnhancement": {
+    "version": 2,
+    "baseline": "finished v1.4.0 eight-second films",
+    "method": "existing-detail-only native-grid luma binomial25 sigma=sqrt(6), gain1.15, cap10, local5x5 clamp",
+    "verification": "docs/validation-v1.5.0.json",
+    "generativeReconstruction": false,
+    "hdrConversion": false,
+    "resizing": false,
+    "retiming": false
+  }
 }

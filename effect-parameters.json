@@ -175,5 +175,26 @@
     "tickingAdded": false,
     "generatedDuangIncluded": false,
     "tail": "original natural decay; clip only at the eight-second boundary; no forced extension"
+  },
+  "clarityEnhancement": {
+    "version": 2,
+    "method": "existing-detail-only spatial luma binomial25 sigma=sqrt(6), gain1.15, cap10, local5x5 clamp",
+    "maxRawLumaDelta": 10,
+    "chromaRawUnchanged": true,
+    "protectedSeconds": [
+      [
+        0,
+        1
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "footerProtectedFraction": 0.16666666666666666,
+    "generativeReconstruction": false,
+    "resizing": false,
+    "retiming": false,
+    "runtimeEncoding": "lossy H264; measured separately"
   }
 }

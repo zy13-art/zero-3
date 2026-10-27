@@ -8,3 +8,12 @@ tools/*renders/
 tools/source-material/
 node_modules/
 *.zip
+*.lnk
+shortcut-backups/
+session.json
+.env
+.env.*
+tools/clarity_v2_native.dll
+tools/clarity_v2_native.lib
+tools/clarity_v2_native.exp
+tools/clarity_v2_native.obj

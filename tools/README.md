@@ -1,6 +1,23 @@
 # 剪辑脚本与参数留档
 
-当前成片为v5制作流程，对外版本1.4.0。脚本用于复核制作方法，不是包含全部素材的开箱即用工程。
+当前公开版本1.5.0，八秒剪辑来自v5流程/1.4.0基准，新增原坐标亮度清晰度修正。脚本用于复核方法，不是包含全部素材的开箱即用工程。
+
+## 清晰度修正
+
+- `clarity_v2_luma.py`：仅对1～6秒已有亮度细节做宽尺度高通增强；保护首秒、末两秒和底部1/6字幕区，限定每像素亮度差±10并受原5×5邻域范围钳制。
+- `clarity_v2_native.cpp`：同一算法的可选Windows/OpenMP加速实现。Python中有NumPy回退，运行启动动画不需要这些制作依赖。
+- `test_clarity_v2_luma.py`：软边增强、硬边/平坦场、时段保护、差值上限、局部范围与裁切的行为测试。
+- `fidelity_luma.py`：先前的微增强算法，仅用于设置 `CLARITY_TEST_BASELINE=1` 后复现软边回归失败，不是当前影片处理方法。
+
+默认测试：`python tools/test_clarity_v2_luma.py`（需要NumPy）。可选加速库在Visual Studio x64 Developer Command Prompt运行：
+
+```cmd
+cl /nologo /O2 /fp:strict /openmp /LD /MT /Fe:tools\clarity_v2_native.dll /Fo:tools\clarity_v2_native.obj tools\clarity_v2_native.cpp
+```
+
+滤镜输入是原尺寸uint8亮度平面与时间秒数，色度由调用者原样保留。生产处理以1.4.0成片为基准，不能把当前1.5.0影片再反复增强。仓库不包含完整FFV1核验母版或私人渲染目录；四片独立核验摘要在 `docs/validation-v1.5.0.json`。
+
+## 原八秒剪辑流程
 
 - `render_intro_v4.py`：从四段原片进行一次光流插帧、曲线变速、原生钟体轮廓扩散、字幕与水波收尾。
 - `render_intro_v5.py`：复用v4阶段文件，将流光线稿显现延长至3秒；水波和拉远保持不变。

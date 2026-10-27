@@ -1,0 +1,444 @@
+{
+  "version": "1.5.0",
+  "status": "pass",
+  "scope": "Native YUV420 source/master/runtime full-frame decode; startup/browser unit fixtures do not prove real Codex cold-start timing. FFV1 QA masters are not shipped in this repository. masters/ contains unchanged8K v1.4.0 files.",
+  "width": 3840,
+  "height": 2160,
+  "fps": 60,
+  "framesPerClip": 480,
+  "durationSeconds": 8,
+  "processingMethod": "existing-detail-only native-grid luma binomial25 sigma=sqrt(6), gain1.15, cap10, local5x5 clamp",
+  "protectedLosslessRegions": {
+    "firstSecondInclusiveFrameRange": [
+      0,
+      60
+    ],
+    "waterTailInclusiveFrameRange": [
+      360,
+      479
+    ],
+    "footerRows": [
+      1800,
+      2159
+    ],
+    "chroma": "entire Cb and Cr planes on all480 frames"
+  },
+  "sourceNativeResolution": "540p/720p; 4K is output size, missing detail is not reconstructed",
+  "clips": {
+    "0c5bbc22": {
+      "file": "intro-0c5bbc22-3840x2160.mp4",
+      "runtimeSha256": "3d81b01ac5adfd9d14b6c187e89c732fd2911a1c112b13d41a67e70da2f76639",
+      "baselineSha256": "1368b6b7e00dd0cf5acf1dd25cdcb8c685e8d5281c8bb7615d0a44b73b39f6d8",
+      "status": "pass",
+      "checks": {
+        "sourceHashMatchesPreRenderBaseline": true,
+        "sourceHashMatchesRendererMarker": true,
+        "expectedHashCount480": true,
+        "sourceAllFramesDecoded": true,
+        "masterAllExpectedFrameHashesMatch": true,
+        "chromaPlanesByteEqualAllFrames": true,
+        "firstSecondLumaByteEqual": true,
+        "footerBottomOneSixthLumaByteEqual": true,
+        "waterTailLumaByteEqual": true,
+        "lumaMaxDeltaAtMost10": true,
+        "noNewBlackOrWhiteLumaClipping": true,
+        "markerDeltaStatsMatchIndependentDecode": true,
+        "masterNativePixelFormatConfirmedYUV420P": true,
+        "sourceChromaHashMatchesMarker": true,
+        "masterChromaHashMatchesSource": true,
+        "sourceUnchangedDuringQA": true,
+        "exportsUnchangedDuringQA": true,
+        "allThreeDecodeClean480Frames": true,
+        "allRequiredMediaSpecs": true,
+        "allVideoTimestampsWithin1msOf60HzGrid": true,
+        "runtimeAACPacketsAndTimingsMatch": true,
+        "runtimeAudioTimebaseMatchesSource": true
+      },
+      "masterVsSourceNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 215680929,
+          "changedFraction": 0.054173330047984185,
+          "meanErrorCodeValues": -0.0017640667197145062,
+          "meanAbsoluteErrorCodeValues": 0.13105545759789738,
+          "rootMeanSquareErrorCodeValues": 0.7644710300892449,
+          "maxAbsoluteErrorCodeValues": 10,
+          "psnrDb": 50.463582962457096,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        }
+      },
+      "runtimeVsLosslessMasterNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 532383139,
+          "changedFraction": 0.13372052705238877,
+          "meanErrorCodeValues": 0.013461295924559542,
+          "meanAbsoluteErrorCodeValues": 0.15335840320979616,
+          "rootMeanSquareErrorCodeValues": 0.44516075252947523,
+          "maxAbsoluteErrorCodeValues": 11,
+          "psnrDb": 55.1604662506475,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 98441568,
+          "changedFraction": 0.09890364583333333,
+          "meanErrorCodeValues": 0.056480884693287034,
+          "meanAbsoluteErrorCodeValues": 0.10296093147183642,
+          "rootMeanSquareErrorCodeValues": 0.3339158983825778,
+          "maxAbsoluteErrorCodeValues": 7,
+          "psnrDb": 57.65806166571976,
+          "zeroError": false
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 129332901,
+          "changedFraction": 0.12993998058931328,
+          "meanErrorCodeValues": 0.06844532053755144,
+          "meanAbsoluteErrorCodeValues": 0.13608490869341563,
+          "rootMeanSquareErrorCodeValues": 0.38602229693965595,
+          "maxAbsoluteErrorCodeValues": 7,
+          "psnrDb": 56.398555797203116,
+          "zeroError": false
+        }
+      },
+      "aacPacketCount": 376,
+      "masterIsVideoOnly": true
+    },
+    "142de3c3": {
+      "file": "intro-142de3c3-3840x2160.mp4",
+      "runtimeSha256": "0565cd95286b245ded995a7e3bf8fb0d6ab3852945f0e5e6c88ecbc3f6f2517d",
+      "baselineSha256": "e545070a34509e29c0cd1e2bffdc78ec0f7b0b29cdd479ab81e2bc1a751dcb2f",
+      "status": "pass",
+      "checks": {
+        "sourceHashMatchesPreRenderBaseline": true,
+        "sourceHashMatchesRendererMarker": true,
+        "expectedHashCount480": true,
+        "sourceAllFramesDecoded": true,
+        "masterAllExpectedFrameHashesMatch": true,
+        "chromaPlanesByteEqualAllFrames": true,
+        "firstSecondLumaByteEqual": true,
+        "footerBottomOneSixthLumaByteEqual": true,
+        "waterTailLumaByteEqual": true,
+        "lumaMaxDeltaAtMost10": true,
+        "noNewBlackOrWhiteLumaClipping": true,
+        "markerDeltaStatsMatchIndependentDecode": true,
+        "masterNativePixelFormatConfirmedYUV420P": true,
+        "sourceChromaHashMatchesMarker": true,
+        "masterChromaHashMatchesSource": true,
+        "sourceUnchangedDuringQA": true,
+        "exportsUnchangedDuringQA": true,
+        "allThreeDecodeClean480Frames": true,
+        "allRequiredMediaSpecs": true,
+        "allVideoTimestampsWithin1msOf60HzGrid": true,
+        "runtimeAACPacketsAndTimingsMatch": true,
+        "runtimeAudioTimebaseMatchesSource": true
+      },
+      "masterVsSourceNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 186451090,
+          "changedFraction": 0.046831569593139145,
+          "meanErrorCodeValues": -0.0016421945830922067,
+          "meanAbsoluteErrorCodeValues": 0.10613077422718943,
+          "rootMeanSquareErrorCodeValues": 0.6712493713269786,
+          "maxAbsoluteErrorCodeValues": 10,
+          "psnrDb": 51.59312576947962,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        }
+      },
+      "runtimeVsLosslessMasterNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 630965976,
+          "changedFraction": 0.15848192153742283,
+          "meanErrorCodeValues": 0.012220536345807612,
+          "meanAbsoluteErrorCodeValues": 0.1813842617709941,
+          "rootMeanSquareErrorCodeValues": 0.4835574256553308,
+          "maxAbsoluteErrorCodeValues": 10,
+          "psnrDb": 54.44184247197203,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 154723081,
+          "changedFraction": 0.15544934031796553,
+          "meanErrorCodeValues": 0.07681635300122171,
+          "meanAbsoluteErrorCodeValues": 0.16323181202578446,
+          "rootMeanSquareErrorCodeValues": 0.42380623044066573,
+          "maxAbsoluteErrorCodeValues": 8,
+          "psnrDb": 55.587456867643645,
+          "zeroError": false
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 185416668,
+          "changedFraction": 0.18628700086805555,
+          "meanErrorCodeValues": 0.11266059329185957,
+          "meanAbsoluteErrorCodeValues": 0.1974777028276106,
+          "rootMeanSquareErrorCodeValues": 0.470195459756039,
+          "maxAbsoluteErrorCodeValues": 8,
+          "psnrDb": 54.685234984122246,
+          "zeroError": false
+        }
+      },
+      "aacPacketCount": 376,
+      "masterIsVideoOnly": true
+    },
+    "5f85f09c": {
+      "file": "intro-5f85f09c-3840x2160.mp4",
+      "runtimeSha256": "ddb333eb7cfec66e9ea8c580907d1f311bac8004696568f5ea9b30df844232d8",
+      "baselineSha256": "cf808b3817c622b4721067211f4d0bb73fc2911524c808c3955da05d84a77d70",
+      "status": "pass",
+      "checks": {
+        "sourceHashMatchesPreRenderBaseline": true,
+        "sourceHashMatchesRendererMarker": true,
+        "expectedHashCount480": true,
+        "sourceAllFramesDecoded": true,
+        "masterAllExpectedFrameHashesMatch": true,
+        "chromaPlanesByteEqualAllFrames": true,
+        "firstSecondLumaByteEqual": true,
+        "footerBottomOneSixthLumaByteEqual": true,
+        "waterTailLumaByteEqual": true,
+        "lumaMaxDeltaAtMost10": true,
+        "noNewBlackOrWhiteLumaClipping": true,
+        "markerDeltaStatsMatchIndependentDecode": true,
+        "masterNativePixelFormatConfirmedYUV420P": true,
+        "sourceChromaHashMatchesMarker": true,
+        "masterChromaHashMatchesSource": true,
+        "sourceUnchangedDuringQA": true,
+        "exportsUnchangedDuringQA": true,
+        "allThreeDecodeClean480Frames": true,
+        "allRequiredMediaSpecs": true,
+        "allVideoTimestampsWithin1msOf60HzGrid": true,
+        "runtimeAACPacketsAndTimingsMatch": true,
+        "runtimeAudioTimebaseMatchesSource": true
+      },
+      "masterVsSourceNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 305344651,
+          "changedFraction": 0.0766944793575585,
+          "meanErrorCodeValues": -0.002856900438850309,
+          "meanAbsoluteErrorCodeValues": 0.13882865748778292,
+          "rootMeanSquareErrorCodeValues": 0.6423694029432298,
+          "maxAbsoluteErrorCodeValues": 10,
+          "psnrDb": 51.97510667588741,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        }
+      },
+      "runtimeVsLosslessMasterNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 767718183,
+          "changedFraction": 0.19283044961058063,
+          "meanErrorCodeValues": 0.01843851147561407,
+          "meanAbsoluteErrorCodeValues": 0.22056895440498006,
+          "rootMeanSquareErrorCodeValues": 0.5321764105648851,
+          "maxAbsoluteErrorCodeValues": 9,
+          "psnrDb": 53.60969120957857,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 135899848,
+          "changedFraction": 0.13653775237911522,
+          "meanErrorCodeValues": 0.08410204374839249,
+          "meanAbsoluteErrorCodeValues": 0.14171205371495627,
+          "rootMeanSquareErrorCodeValues": 0.3905619843718917,
+          "maxAbsoluteErrorCodeValues": 8,
+          "psnrDb": 56.29700423573521,
+          "zeroError": false
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 164615675,
+          "changedFraction": 0.16538836946212707,
+          "meanErrorCodeValues": 0.08732821843653549,
+          "meanAbsoluteErrorCodeValues": 0.17340807351948304,
+          "rootMeanSquareErrorCodeValues": 0.43614521574487375,
+          "maxAbsoluteErrorCodeValues": 7,
+          "psnrDb": 55.33818135099298,
+          "zeroError": false
+        }
+      },
+      "aacPacketCount": 376,
+      "masterIsVideoOnly": true
+    },
+    "649e948d": {
+      "file": "intro-649e948d-3840x2160.mp4",
+      "runtimeSha256": "79354b1f4d2524a509f8878d764d9052d3150f8f56dc21a98a175bacb5153ac4",
+      "baselineSha256": "2bf947813056718ae94b6d3f15741601de3faedddcea9e10f286284bab832b30",
+      "status": "pass",
+      "checks": {
+        "sourceHashMatchesPreRenderBaseline": true,
+        "sourceHashMatchesRendererMarker": true,
+        "expectedHashCount480": true,
+        "sourceAllFramesDecoded": true,
+        "masterAllExpectedFrameHashesMatch": true,
+        "chromaPlanesByteEqualAllFrames": true,
+        "firstSecondLumaByteEqual": true,
+        "footerBottomOneSixthLumaByteEqual": true,
+        "waterTailLumaByteEqual": true,
+        "lumaMaxDeltaAtMost10": true,
+        "noNewBlackOrWhiteLumaClipping": true,
+        "markerDeltaStatsMatchIndependentDecode": true,
+        "masterNativePixelFormatConfirmedYUV420P": true,
+        "sourceChromaHashMatchesMarker": true,
+        "masterChromaHashMatchesSource": true,
+        "sourceUnchangedDuringQA": true,
+        "exportsUnchangedDuringQA": true,
+        "allThreeDecodeClean480Frames": true,
+        "allRequiredMediaSpecs": true,
+        "allVideoTimestampsWithin1msOf60HzGrid": true,
+        "runtimeAACPacketsAndTimingsMatch": true,
+        "runtimeAudioTimebaseMatchesSource": true
+      },
+      "masterVsSourceNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 185646655,
+          "changedFraction": 0.04662951685273598,
+          "meanErrorCodeValues": -0.001658425162358539,
+          "meanAbsoluteErrorCodeValues": 0.13535195282359183,
+          "rootMeanSquareErrorCodeValues": 0.8559542741086539,
+          "maxAbsoluteErrorCodeValues": 10,
+          "psnrDb": 49.481792311227444,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 0,
+          "changedFraction": 0.0,
+          "meanErrorCodeValues": 0.0,
+          "meanAbsoluteErrorCodeValues": 0.0,
+          "rootMeanSquareErrorCodeValues": 0.0,
+          "maxAbsoluteErrorCodeValues": 0,
+          "psnrDb": null,
+          "zeroError": true
+        }
+      },
+      "runtimeVsLosslessMasterNativeYUV": {
+        "Y": {
+          "samples": 3981312000,
+          "changedSamples": 475638644,
+          "changedFraction": 0.11946781462995114,
+          "meanErrorCodeValues": 0.010693150649836034,
+          "meanAbsoluteErrorCodeValues": 0.13667728301625193,
+          "rootMeanSquareErrorCodeValues": 0.41950452107197794,
+          "maxAbsoluteErrorCodeValues": 12,
+          "psnrDb": 55.67607069556199,
+          "zeroError": false
+        },
+        "Cb": {
+          "samples": 995328000,
+          "changedSamples": 80544720,
+          "changedFraction": 0.0809227912808642,
+          "meanErrorCodeValues": 0.042374573005079734,
+          "meanAbsoluteErrorCodeValues": 0.08463402717496142,
+          "rootMeanSquareErrorCodeValues": 0.30419759039964656,
+          "maxAbsoluteErrorCodeValues": 7,
+          "psnrDb": 58.46768821646191,
+          "zeroError": false
+        },
+        "Cr": {
+          "samples": 995328000,
+          "changedSamples": 69413447,
+          "changedFraction": 0.06973926886413323,
+          "meanErrorCodeValues": 0.037033119735403804,
+          "meanAbsoluteErrorCodeValues": 0.07239645925765174,
+          "rootMeanSquareErrorCodeValues": 0.2792463296283735,
+          "maxAbsoluteErrorCodeValues": 6,
+          "psnrDb": 59.21105413819884,
+          "zeroError": false
+        }
+      },
+      "aacPacketCount": 376,
+      "masterIsVideoOnly": true
+    }
+  },
+  "releaseChecks": {
+    "safeWindowsStartupTestsPassed": 31,
+    "lumaBehaviorTestsPassed": 5,
+    "isolatedBrowserChecksPassed": 9,
+    "publicMediaSha256Verified": 8,
+    "realCodexColdStartTested": false
+  }
+}

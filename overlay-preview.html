@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>Codex 入场动画 · 隔离预览</title>
+<style>html,body{margin:0;height:100%;background:#202123;color:#ececf1;font:15px Segoe UI,sans-serif}main{max-width:760px;margin:0 auto;padding:60px 30px}button{padding:10px 18px;cursor:pointer}pre{white-space:pre-wrap;background:#151515;padding:16px}aside{color:#aaa;line-height:1.7}</style></head>
+<body><main><h1>窗口内动画隔离预览</h1><p>这是模拟聊天背景，不连接或启动 Codex。预览使用同一 overlay.mjs；黑幕先出现，再接收视频并显示首帧。</p>
+<button id="replay">播放预览</button> <label><input type="checkbox" id="mute" checked>预览静音</label>
+<aside><p>拖动浏览器面板大小查看 contain 黑边；按 Esc 跳过。完成后焦点应回到“播放预览”。</p></aside><pre id="status">准备预览…</pre></main>
+<script type="module">
+import {installIntro} from './overlay.mjs';
+const output=document.querySelector('#status'),button=document.querySelector('#replay');
+let serial=0;
+async function play(){
+ if(window.__kurumiIntro)return;
+ button.focus();const sessionId='isolated-preview-'+(++serial);installIntro(window,sessionId);
+ const intro=window.__kurumiIntro;
+ output.textContent='Opaque cover mounted before reading film.';
+ const timer=setInterval(()=>{const state=window.__kurumiIntro?.sessionId===sessionId?intro.status():window.__kurumiIntroResult;output.textContent=JSON.stringify(state,null,2);if(state?.terminal)clearInterval(timer);},100);
+ try{
+  const config=await (await fetch('./config.json')).json();
+  const film=new URLSearchParams(location.search).get('film')||config.playlist[0];
+  if(!config.playlist.includes(film))throw Error('Unknown preview film');
+  await new Promise(r=>setTimeout(r,1000));
+  if(window.__kurumiIntro!==intro)return;
+  const response=await fetch('./films/'+encodeURIComponent(film));if(!response.ok)throw Error('HTTP '+response.status);
+  const bytes=new Uint8Array(await response.arrayBuffer());
+  if(window.__kurumiIntro!==intro)return;
+  intro.begin();
+  for(let offset=0;offset<bytes.length;offset+=512*1024){
+   if(window.__kurumiIntro!==intro)return;
+   const chunk=bytes.subarray(offset,offset+512*1024);let binary='';
+   for(let i=0;i<chunk.length;i+=8192)binary+=String.fromCharCode(...chunk.subarray(i,i+8192));
+   intro.addChunk(btoa(binary));await new Promise(r=>setTimeout(r,0));
+  }
+  document.querySelector('#kurumi-intro video').muted=document.querySelector('#mute').checked;
+  intro.start();
+ }catch(e){output.textContent=e.stack||e.message;intro.dispose('error');}
+}
+button.onclick=play;play();
+</script></body></html>
