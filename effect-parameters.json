@@ -10,7 +10,7 @@
     "清晰Ⅱ": 25,
     "高清增强": 40
   },
-  "filterImplementation": "user-approved equivalent: denoise, local contrast and sharpening; not native CapCut presets",
+  "filterImplementation": "User-approved equivalent implementation; intent values retained, not native CapCut presets. Current scalar grade and SR are documented below.",
   "lineRevealSeconds": 3,
   "motionSeconds": 6,
   "rippleSeconds": 2,
@@ -111,22 +111,23 @@
     7,
     8
   ],
-  "actualBaseFilters": "eq=saturation=1.05:brightness=0.02:contrast=1.05:gamma=1.035; unsharp 5x5 amount .60; unsharp 13x13 amount .32",
-  "actualEquivalentFilters": "hqdn3d .4/.4/.8/.8; unsharp 7x7 .10; unsharp 13x13 .10; contrast 1.01; unsharp 5x5 .16",
+  "actualBaseFilters": "eq=saturation=1.05:brightness=0.02:contrast=1.05:gamma=1.035",
+  "actualEquivalentFilters": "eq=contrast=1.01; source-first full anime SR; no stacked unsharp or hqdn3d in current pipeline",
   "tutorialEquivalent": {
     "流光线描": "bright moving edge streaks; reveal decreases to zero at 3.0 seconds",
     "梦幻辉光": "low bloom, reference glow 5",
     "发光Ⅱ": "low bloom, reference glow 5"
   },
-  "runtime": "3840x2160 H.264 60fps 18Mbps",
-  "master": "7680x4320 HEVC 90fps 42Mbps",
+  "runtime": "3840x2160 H.264 60fps; exact current media hashes and decode checks in verification.json",
+  "master": "historical 7680x4320 HEVC 90fps archives; unchanged by source-first v4",
   "limitations": [
     "CapCut raw numbers are retained as intent; mappings are approximations, not identical proprietary filters.",
     "Source 540p/720p; upscaling is not recovered native detail.",
     "Original baked captions are covered by a lower dark band, with new bilingual text above.",
     "Audio preserves pitch using per-section tempo; in-section visual speed varies, so lip synchronization is approximate.",
-    "One optical-flow interpolation pass at original540p/720p resolution, followed by enhancement and scaling.",
-    "Only visible native clock fragments are traced. Missing clock geometry is never completed."
+    "Only visible native clock fragments are traced. Missing clock geometry is never completed.",
+    "Original 540p/720p limits true detail. Neural SR and RIFE may produce detail or motion artifacts; no identity or temporal zero-error claim.",
+    "Current pipeline: original 540p/720p -> full anime SR x4/x3 -> 4K90 RIFE source-time grid -> curve-mapped 4K60 -> 4K effects."
   ],
   "clockEffect": {
     "source": "same current original frame",
@@ -138,7 +139,6 @@
     "clip3": "native Roman ring and gear edges",
     "clip4": "native silver Roman ring and gears rise at5.05s; only visible portions traced"
   },
-  "interpolation": "one optical-flow pass from original source to90fps before effects and scaling",
   "exitBlur": {
     "startSeconds": 6.18,
     "endSeconds": 8,
@@ -176,25 +176,42 @@
     "generatedDuangIncluded": false,
     "tail": "original natural decay; clip only at the eight-second boundary; no forced extension"
   },
+  "interpolation": "full original-source anime SR to4K, then 4K90 RIFE source-time grid, then existing curve mapping to60fps before 4K effects",
   "clarityEnhancement": {
-    "version": 2,
-    "method": "existing-detail-only spatial luma binomial25 sigma=sqrt(6), gain1.15, cap10, local5x5 clamp",
-    "maxRawLumaDelta": 10,
-    "chromaRawUnchanged": true,
-    "protectedSeconds": [
-      [
-        0,
-        1
-      ],
-      [
-        6,
-        8
-      ]
+    "version": 4,
+    "method": "source-first full anime super-resolution, then RIFE and 4K effects",
+    "baseline": "original 540p/720p 30fps source clips; not rendered 8K or prior effects",
+    "model": "realesr-animevideov3-x4 / realesr-animevideov3-x3",
+    "neuralSuperResolution": true,
+    "srScaleRule": "540p -> x4; 720p -> x3; full model output at 3840x2160",
+    "neuralWeight": 1.0,
+    "frameInterpolation": true,
+    "interpolationModel": "RIFE",
+    "interpolationGrid": [
+      3840,
+      2160,
+      90
     ],
-    "footerProtectedFraction": 0.16666666666666666,
-    "generativeReconstruction": false,
-    "resizing": false,
-    "retiming": false,
-    "runtimeEncoding": "lossy H264; measured separately"
+    "retiming": true,
+    "retimingMethod": "existing curve plan mapped from 4K90 source-time grid to 4K60",
+    "effectRenderSize": [
+      3840,
+      2160
+    ],
+    "installedSize": [
+      3840,
+      2160
+    ],
+    "fps": 60,
+    "frames": 480,
+    "durationSeconds": 8,
+    "lineRevealSeconds": 3,
+    "outroSeconds": 2,
+    "aacPayloadAndTimingExact": true,
+    "audioMethod": "copy the current approved AAC payload and packet timing exactly",
+    "faceRestorationModel": false,
+    "generativeImageSamplesUsed": false,
+    "limitations": "Original 540p/720p limits true detail. Neural SR and RIFE may produce detail or motion artifacts; no identity or temporal zero-error claim.",
+    "verification": "docs/validation-v1.6.0.json"
   }
 }

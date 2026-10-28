@@ -1,0 +1,587 @@
+{
+  "version": "1.6.0",
+  "status": "PASS",
+  "width": 3840,
+  "height": 2160,
+  "fps": 60,
+  "framesPerClip": 480,
+  "durationSeconds": 8,
+  "method": {
+    "version": 4,
+    "method": "source-first full anime super-resolution, then RIFE and 4K effects",
+    "baseline": "original 540p/720p 30fps source clips; not rendered 8K or prior effects",
+    "model": "realesr-animevideov3-x4 / realesr-animevideov3-x3",
+    "neuralSuperResolution": true,
+    "srScaleRule": "540p -> x4; 720p -> x3; full model output at 3840x2160",
+    "neuralWeight": 1.0,
+    "frameInterpolation": true,
+    "interpolationModel": "RIFE",
+    "interpolationGrid": [
+      3840,
+      2160,
+      90
+    ],
+    "retiming": true,
+    "retimingMethod": "existing curve plan mapped from 4K90 source-time grid to 4K60",
+    "effectRenderSize": [
+      3840,
+      2160
+    ],
+    "installedSize": [
+      3840,
+      2160
+    ],
+    "fps": 60,
+    "frames": 480,
+    "durationSeconds": 8,
+    "lineRevealSeconds": 3,
+    "outroSeconds": 2,
+    "aacPayloadAndTimingExact": true,
+    "audioMethod": "copy the current approved AAC payload and packet timing exactly",
+    "faceRestorationModel": false,
+    "generativeImageSamplesUsed": false,
+    "limitations": "Original 540p/720p limits true detail. Neural SR and RIFE may produce detail or motion artifacts; no identity or temporal zero-error claim.",
+    "verification": "docs/validation-v1.6.0.json"
+  },
+  "coldStartTested": false,
+  "scope": "Renderer full CPU decode of all 480 frames per film; independent stream/packet hashes, AAC timing and source-curve mapping checks. Existing launcher is unchanged.",
+  "limitations": [
+    "Packet checks do not constitute full video decode; the renderer checks full CPU decoding separately.",
+    "Saved SR/RIFE alignment checks cover the specified original-frame samples, not every inferred image.",
+    "No visual preference, identity consistency, or absence of temporal artifacts is established."
+  ],
+  "clips": [
+    {
+      "prefix": "0c5bbc22",
+      "status": "PASS",
+      "file": "films/intro-0c5bbc22-3840x2160.mp4",
+      "video": {
+        "sha256": "0244783242a8fcec6a4d94da7b00de1ef50825313e4e95597b2a183965aee760",
+        "bytes": 39392496,
+        "codec": "h264",
+        "width": 3840,
+        "height": 2160,
+        "pixFmt": "yuv420p",
+        "fps": "60/1",
+        "durationSeconds": "8.000000",
+        "declaredFrames": 480,
+        "hasBFrames": 0,
+        "videoPacketTimeline": {
+          "count": 480,
+          "firstPts": 0,
+          "firstDts": 0,
+          "lastPts": 122624,
+          "lastDts": 122624,
+          "lastDuration": 256,
+          "endPts": 122880,
+          "timeBase": "1/15360",
+          "endSeconds": "8",
+          "firstSideData": [],
+          "canonicalPacketListSha256": "33ed79689b757b66eb64789c943771961ba57d712a4696286bee9b5b7f3d431b"
+        },
+        "everyVideoPtsDtsIsNOver60AndDurationOneOver60": true,
+        "sourceRuntimeSha256": "a2e629564aa4e876ac6474c2aabedeeae0058c05b1ed9a074ac1c0f1700737db",
+        "sourceAudioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "7527092507da6174b45e2fc13e83d41c135595481c5ff02a9967e3f7dcba04ed"
+        },
+        "audioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "7527092507da6174b45e2fc13e83d41c135595481c5ff02a9967e3f7dcba04ed"
+        },
+        "aacPayloadTimingFlagsAndSideDataExact": true,
+        "audioExtradataExact": true,
+        "audioStreamFieldsExact": [
+          "codec_name",
+          "codec_tag_string",
+          "sample_fmt",
+          "sample_rate",
+          "channels",
+          "channel_layout",
+          "time_base",
+          "start_pts",
+          "start_time",
+          "duration_ts",
+          "duration",
+          "extradata_size",
+          "extradata_hash"
+        ],
+        "fileHashMatchesRendererReport": true
+      },
+      "sourceDerivation": {
+        "nativeSourceSha256": "dbf081f8907bf435a4b27e51ca0788247bff618de275d763228b447c624a855f",
+        "nativeDimensions": [
+          960,
+          540
+        ],
+        "sourceFrameCount": 190,
+        "nativeCadence": 30,
+        "rifeCadence": 90,
+        "rifeOutputFrames": 570,
+        "rifeFilenameBase": 1,
+        "rifeIndicesReferToSortedSequencePositions": true,
+        "mappingSha256": "2cfeffa42ba5ab65ebf446360bb121c34346ba60680876773f0e1c926f7643bb",
+        "bodyMappingFrames": 360,
+        "independentInverseCurveMatchesEveryBodyFrame": true,
+        "everyUnclampedRifeIndexIsNearest90FpsFrame": true,
+        "maxUnclampedSourceTimeQuantizationSeconds": 0.0055555555555537595,
+        "quantizationLimitSeconds": 0.005555555555555556,
+        "justifiedTerminalClamps": [],
+        "srScale": 4,
+        "savedSrImageCount": 190,
+        "sampledSrDimensions": [
+          {
+            "path": "frame000000.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000095.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000189.png",
+            "width": 3840,
+            "height": 2160
+          }
+        ],
+        "limits": "This verifies saved original source, 4K SR/RIFE alignment samples, mapping mathematics and SR sample dimensions; it does not independently reconstruct the neural SR or final composite."
+      },
+      "fullDecodeFrameCount": 480
+    },
+    {
+      "prefix": "142de3c3",
+      "status": "PASS",
+      "file": "films/intro-142de3c3-3840x2160.mp4",
+      "video": {
+        "sha256": "e4adcbc252d2b46035e69440205f1cbc70fe077c0aef2c7cdcb6c87f60aca650",
+        "bytes": 49804266,
+        "codec": "h264",
+        "width": 3840,
+        "height": 2160,
+        "pixFmt": "yuv420p",
+        "fps": "60/1",
+        "durationSeconds": "8.000000",
+        "declaredFrames": 480,
+        "hasBFrames": 0,
+        "videoPacketTimeline": {
+          "count": 480,
+          "firstPts": 0,
+          "firstDts": 0,
+          "lastPts": 122624,
+          "lastDts": 122624,
+          "lastDuration": 256,
+          "endPts": 122880,
+          "timeBase": "1/15360",
+          "endSeconds": "8",
+          "firstSideData": [],
+          "canonicalPacketListSha256": "387530b5c810616101c6fbb2f1a7d3bda249870f43153e8d969aa54256afcb99"
+        },
+        "everyVideoPtsDtsIsNOver60AndDurationOneOver60": true,
+        "sourceRuntimeSha256": "33dfb0ca0d5aa5d045f8e245b4bc93b55b2d4919e4589b8898d8b299322440d5",
+        "sourceAudioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "9ed4e142863856a165a2f5b0fb1bd7960e85397ebe1269005199a374251d5bec"
+        },
+        "audioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "9ed4e142863856a165a2f5b0fb1bd7960e85397ebe1269005199a374251d5bec"
+        },
+        "aacPayloadTimingFlagsAndSideDataExact": true,
+        "audioExtradataExact": true,
+        "audioStreamFieldsExact": [
+          "codec_name",
+          "codec_tag_string",
+          "sample_fmt",
+          "sample_rate",
+          "channels",
+          "channel_layout",
+          "time_base",
+          "start_pts",
+          "start_time",
+          "duration_ts",
+          "duration",
+          "extradata_size",
+          "extradata_hash"
+        ],
+        "fileHashMatchesRendererReport": true
+      },
+      "sourceDerivation": {
+        "nativeSourceSha256": "7b7ec5559a467de78308c10420105d2c3e9fccaa179feeaf12094f0fcbca656f",
+        "nativeDimensions": [
+          960,
+          540
+        ],
+        "sourceFrameCount": 182,
+        "nativeCadence": 30,
+        "rifeCadence": 90,
+        "rifeOutputFrames": 546,
+        "rifeFilenameBase": 1,
+        "rifeIndicesReferToSortedSequencePositions": true,
+        "mappingSha256": "189c243dfa1375958d1cf4548b0669f90d6e2be869845e675bc1635ccee49568",
+        "bodyMappingFrames": 360,
+        "independentInverseCurveMatchesEveryBodyFrame": true,
+        "everyUnclampedRifeIndexIsNearest90FpsFrame": true,
+        "maxUnclampedSourceTimeQuantizationSeconds": 0.005555555555555536,
+        "quantizationLimitSeconds": 0.005555555555555556,
+        "justifiedTerminalClamps": [],
+        "srScale": 4,
+        "savedSrImageCount": 182,
+        "sampledSrDimensions": [
+          {
+            "path": "frame000000.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000091.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000181.png",
+            "width": 3840,
+            "height": 2160
+          }
+        ],
+        "limits": "This verifies saved original source, 4K SR/RIFE alignment samples, mapping mathematics and SR sample dimensions; it does not independently reconstruct the neural SR or final composite."
+      },
+      "fullDecodeFrameCount": 480
+    },
+    {
+      "prefix": "5f85f09c",
+      "status": "PASS",
+      "file": "films/intro-5f85f09c-3840x2160.mp4",
+      "video": {
+        "sha256": "c594e60ca694b106b20f4f445f8202502a9d2b2a6089dc7df0dbc871d1ebdf87",
+        "bytes": 40848516,
+        "codec": "h264",
+        "width": 3840,
+        "height": 2160,
+        "pixFmt": "yuv420p",
+        "fps": "60/1",
+        "durationSeconds": "8.000000",
+        "declaredFrames": 480,
+        "hasBFrames": 0,
+        "videoPacketTimeline": {
+          "count": 480,
+          "firstPts": 0,
+          "firstDts": 0,
+          "lastPts": 122624,
+          "lastDts": 122624,
+          "lastDuration": 256,
+          "endPts": 122880,
+          "timeBase": "1/15360",
+          "endSeconds": "8",
+          "firstSideData": [],
+          "canonicalPacketListSha256": "7196518401dc0b876e075d1d9ccb7e0dc5bc269dd18f9ad4485001196644d340"
+        },
+        "everyVideoPtsDtsIsNOver60AndDurationOneOver60": true,
+        "sourceRuntimeSha256": "a58ca058c51403956ad170ad550a406b27debf34e816553f985b7190d13aa507",
+        "sourceAudioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "5acdfaa130612d9b875d7c710d91f8dfec8b9f1726881844d2c6db85add274f9"
+        },
+        "audioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "5acdfaa130612d9b875d7c710d91f8dfec8b9f1726881844d2c6db85add274f9"
+        },
+        "aacPayloadTimingFlagsAndSideDataExact": true,
+        "audioExtradataExact": true,
+        "audioStreamFieldsExact": [
+          "codec_name",
+          "codec_tag_string",
+          "sample_fmt",
+          "sample_rate",
+          "channels",
+          "channel_layout",
+          "time_base",
+          "start_pts",
+          "start_time",
+          "duration_ts",
+          "duration",
+          "extradata_size",
+          "extradata_hash"
+        ],
+        "fileHashMatchesRendererReport": true
+      },
+      "sourceDerivation": {
+        "nativeSourceSha256": "664cb6ba05594c0b003578c1a99fda56ffa7f7e0d0dcea0e4836f45ca77c3ef3",
+        "nativeDimensions": [
+          1280,
+          720
+        ],
+        "sourceFrameCount": 108,
+        "nativeCadence": 30,
+        "rifeCadence": 90,
+        "rifeOutputFrames": 324,
+        "rifeFilenameBase": 1,
+        "rifeIndicesReferToSortedSequencePositions": true,
+        "mappingSha256": "4cc51e8e76fbc8530fbe0ee4b62aa5a0537f9e5cc1f4f02ed748230ae65fa37c",
+        "bodyMappingFrames": 360,
+        "independentInverseCurveMatchesEveryBodyFrame": true,
+        "everyUnclampedRifeIndexIsNearest90FpsFrame": true,
+        "maxUnclampedSourceTimeQuantizationSeconds": 0.005555555555555536,
+        "quantizationLimitSeconds": 0.005555555555555556,
+        "justifiedTerminalClamps": [],
+        "srScale": 3,
+        "savedSrImageCount": 108,
+        "sampledSrDimensions": [
+          {
+            "path": "frame000000.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000054.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000107.png",
+            "width": 3840,
+            "height": 2160
+          }
+        ],
+        "limits": "This verifies saved original source, 4K SR/RIFE alignment samples, mapping mathematics and SR sample dimensions; it does not independently reconstruct the neural SR or final composite."
+      },
+      "fullDecodeFrameCount": 480
+    },
+    {
+      "prefix": "649e948d",
+      "status": "PASS",
+      "file": "films/intro-649e948d-3840x2160.mp4",
+      "video": {
+        "sha256": "e2d3132893b23be803442e3019ff0524f7e16b9e201ee4b2726078aadadce4ce",
+        "bytes": 33353056,
+        "codec": "h264",
+        "width": 3840,
+        "height": 2160,
+        "pixFmt": "yuv420p",
+        "fps": "60/1",
+        "durationSeconds": "8.000000",
+        "declaredFrames": 480,
+        "hasBFrames": 0,
+        "videoPacketTimeline": {
+          "count": 480,
+          "firstPts": 0,
+          "firstDts": 0,
+          "lastPts": 122624,
+          "lastDts": 122624,
+          "lastDuration": 256,
+          "endPts": 122880,
+          "timeBase": "1/15360",
+          "endSeconds": "8",
+          "firstSideData": [],
+          "canonicalPacketListSha256": "ac6b9c664bee7a4481bda661257c487bd14185bcd889cb795e35af5ca586254c"
+        },
+        "everyVideoPtsDtsIsNOver60AndDurationOneOver60": true,
+        "sourceRuntimeSha256": "dc63b34d592f771ede9d81160ee70272c46345be4963505205cde46e8f9929ba",
+        "sourceAudioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "740687dd79cbfc0abffcb3ef3c299c76ee6b4717537b7c31bfe984fd703462c2"
+        },
+        "audioPacketSummary": {
+          "count": 376,
+          "firstPts": -1024,
+          "firstDts": -1024,
+          "lastPts": 382976,
+          "lastDts": 382976,
+          "lastDuration": 1024,
+          "endPts": 384000,
+          "timeBase": "1/48000",
+          "endSeconds": "8",
+          "firstSideData": [
+            {
+              "side_data_type": "Skip Samples",
+              "skip_samples": 1024,
+              "discard_padding": 0,
+              "skip_reason": 0,
+              "discard_reason": 0
+            }
+          ],
+          "canonicalPacketListSha256": "740687dd79cbfc0abffcb3ef3c299c76ee6b4717537b7c31bfe984fd703462c2"
+        },
+        "aacPayloadTimingFlagsAndSideDataExact": true,
+        "audioExtradataExact": true,
+        "audioStreamFieldsExact": [
+          "codec_name",
+          "codec_tag_string",
+          "sample_fmt",
+          "sample_rate",
+          "channels",
+          "channel_layout",
+          "time_base",
+          "start_pts",
+          "start_time",
+          "duration_ts",
+          "duration",
+          "extradata_size",
+          "extradata_hash"
+        ],
+        "fileHashMatchesRendererReport": true
+      },
+      "sourceDerivation": {
+        "nativeSourceSha256": "355826bb0aca4c785f9db4547a27c7453a1245315817bd3cf3b44af7be1fb05b",
+        "nativeDimensions": [
+          1280,
+          720
+        ],
+        "sourceFrameCount": 178,
+        "nativeCadence": 30,
+        "rifeCadence": 90,
+        "rifeOutputFrames": 534,
+        "rifeFilenameBase": 1,
+        "rifeIndicesReferToSortedSequencePositions": true,
+        "mappingSha256": "85b4a619ed893caf8b97fdcfaca561ec8491f8815bb3c514255e91f9e55aa9de",
+        "bodyMappingFrames": 360,
+        "independentInverseCurveMatchesEveryBodyFrame": true,
+        "everyUnclampedRifeIndexIsNearest90FpsFrame": true,
+        "maxUnclampedSourceTimeQuantizationSeconds": 0.005555555555555536,
+        "quantizationLimitSeconds": 0.005555555555555556,
+        "justifiedTerminalClamps": [],
+        "srScale": 3,
+        "savedSrImageCount": 178,
+        "sampledSrDimensions": [
+          {
+            "path": "frame000000.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000089.png",
+            "width": 3840,
+            "height": 2160
+          },
+          {
+            "path": "frame000177.png",
+            "width": 3840,
+            "height": 2160
+          }
+        ],
+        "limits": "This verifies saved original source, 4K SR/RIFE alignment samples, mapping mathematics and SR sample dimensions; it does not independently reconstruct the neural SR or final composite."
+      },
+      "fullDecodeFrameCount": 480
+    }
+  ]
+}
