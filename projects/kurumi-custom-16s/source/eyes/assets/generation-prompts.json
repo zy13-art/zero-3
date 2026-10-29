@@ -1,0 +1,14 @@
+{
+  "mode": "built-in imagegen",
+  "reference": "KurumiBasePreview-v4/kurumi-base-v4-expression.png",
+  "jobs": [
+    {
+      "name": "closed",
+      "p": "Precisely aligned animation eye asset. Edit the supplied approved Kurumi image in place. Keep the exact same landscape canvas and positions. Change ONLY the two eyelids within the existing eye regions. Every other feature must remain unchanged: mouth seam and expression, nose, upright face, cheeks/chin, eyebrow locations, bangs, black/red hair, ribbons, clothing, navy bokeh and framing. Keep iris size and red/golden clock designs unchanged, only occlude them with the lids. No gaze turn, face redraw, squashing, pupil resizing, added expression, new makeup, text or watermark. The eye at the right is visible near the canvas edge: keep its position exactly. Close both eyes fully and naturally, with a smooth relaxed curved eyelid and attached original anime eyelashes. No iris should remain exposed; no duplicate lashes or floating eyelash row. Output one opaque matched closed-eye image."
+    },
+    {
+      "name": "half",
+      "p": "Precisely aligned animation eye asset. Edit the supplied approved Kurumi image in place. Keep the exact same landscape canvas and positions. Change ONLY the two eyelids within the existing eye regions. Every other feature must remain unchanged: mouth seam and expression, nose, upright face, cheeks/chin, eyebrow locations, bangs, black/red hair, ribbons, clothing, navy bokeh and framing. Keep iris size and red/golden clock designs unchanged, only occlude them with the lids. No gaze turn, face redraw, squashing, pupil resizing, added expression, new makeup, text or watermark. The eye at the right is visible near the canvas edge: keep its position exactly. Lower both upper eyelids into a natural half-closed pose, covering about the upper half of each iris. The upper lash follows the curved lid, rather than forming a straight horizontal black bar. Keep the lower eyelid nearly unchanged and irises round behind the lids. Output one opaque matched half-closed image."
+    }
+  ]
+}

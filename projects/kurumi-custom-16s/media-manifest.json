@@ -1,0 +1,42 @@
+{
+  "projectId": "codex-kurumi-custom-16s",
+  "version": "1.0.0",
+  "date": "2026-10-29",
+  "media": [
+    {
+      "file": "films/kurumi-custom-16s-4k60.mp4",
+      "width": 3840,
+      "height": 2160,
+      "fps": 60,
+      "frames": 960,
+      "seconds": 16,
+      "bytes": 13507992,
+      "sha256": "03b3b478e15f1d932156844367c8f63c6cc8aa6b0c8726f6e68ae3405b52955e",
+      "gitBlob": "e572896c7d82f3a2bfad2b086686cb5b7fe88b2b"
+    },
+    {
+      "file": "previews/kurumi-custom-16s-1080p120.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 120,
+      "frames": 1920,
+      "seconds": 16,
+      "bytes": 9202772,
+      "sha256": "c0f84153b87bab7d5576cba5112596fea6b9a3e72fbdb0ecce8be3e11b326338",
+      "gitBlob": "311f997e3ae95d4c00ec6a29144d4856e783736d"
+    }
+  ],
+  "blink": {
+    "closingReference": "B / Miku captured closing",
+    "openingReference": "A / tutorial-derived opening",
+    "closingSeconds": 0.2,
+    "closedHoldSeconds": 0.016666666666666666,
+    "openingSeconds": 0.9,
+    "startsAtSeconds": [
+      10.7,
+      13.86
+    ]
+  },
+  "originalAudioPayloadSha256": "18d107cb9e6a7990006340ca54b6947d2e643e55f31c0c79492c38f46487080b",
+  "currentLocalInstalledMovieMatches4K60": true
+}

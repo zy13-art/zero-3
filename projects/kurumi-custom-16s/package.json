@@ -1,0 +1,10 @@
+{
+  "name": "codex-kurumi-custom-16s",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test source/tests/*.test.mjs tests/*.test.mjs launcher-compat/tests/*.test.mjs",
+    "preview": "node tools/serve.mjs"
+  }
+}

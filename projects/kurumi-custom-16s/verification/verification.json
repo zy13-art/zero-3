@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "media": [
+    {
+      "file": "films/kurumi-custom-16s-4k60.mp4",
+      "width": 3840,
+      "height": 2160,
+      "fps": 60,
+      "frames": 960,
+      "seconds": 16,
+      "bytes": 13507992,
+      "sha256": "03b3b478e15f1d932156844367c8f63c6cc8aa6b0c8726f6e68ae3405b52955e",
+      "gitBlob": "e572896c7d82f3a2bfad2b086686cb5b7fe88b2b"
+    },
+    {
+      "file": "previews/kurumi-custom-16s-1080p120.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 120,
+      "frames": 1920,
+      "seconds": 16,
+      "bytes": 9202772,
+      "sha256": "c0f84153b87bab7d5576cba5112596fea6b9a3e72fbdb0ecce8be3e11b326338",
+      "gitBlob": "311f997e3ae95d4c00ec6a29144d4856e783736d"
+    }
+  ],
+  "smoothEyeModuleUnchanged": true,
+  "unchangedMotionModules": {
+    "hair-rig.mjs": "46d67d91ae09429d07316f9e8da606ae40c42108b5ab470b1ce8153253bac7f1",
+    "motion.mjs": "8d677603abfd9df63ad39e095e87dcb1a061c046f995805bff900914ef54182e",
+    "work-phase.mjs": "b9fa92b4b2001638377cdea7dc1f577eadf038b3841d1d8880300fab9c427c68",
+    "construction-field.mjs": "0cb60c1555ff98233456754977ff88fa85bcdfd86ec0e657f226f85f8860d467",
+    "reveal.mjs": "d8bbda915818fc7278b91197a543a8e7b60dd9bae877775610230aa03c7d2d9a",
+    "contour-map.mjs": "be16f0c876f1a51552f9c1eb526cd26f3d75a03baea51be1b15fe19a56ce4750"
+  },
+  "onlySceneEdits": "Eye callback after iris / before hair shader; old eyelid shader bypassed.",
+  "matteFix": "Straight-alpha unmix prevents applying the feather twice; opaque eye preview branch unchanged.",
+  "browserQA": {
+    "status": "PASS",
+    "renderer": {
+      "ready": true,
+      "mode": "boot",
+      "completed": false,
+      "paused": false,
+      "reduced": false,
+      "elapsed": 0.6051999999999998,
+      "fps": 0,
+      "renderedFrames": 4,
+      "visibility": "visible",
+      "fixedTime": null,
+      "canvasWidth": 1280,
+      "canvasHeight": 720,
+      "disposed": false,
+      "recording": false,
+      "soundEnabled": false,
+      "soundBlocked": false,
+      "deformation": true,
+      "deformError": "",
+      "eyeOpenness": 0
+    },
+    "matte": [
+      {
+        "state": {
+          "open": 0,
+          "lidBalance": 1
+        },
+        "boundaryMean": 0.23726806970540887,
+        "boundaryMax": 2,
+        "boundaryChannels": 340404
+      },
+      {
+        "state": {
+          "open": 0.5,
+          "lidBalance": 0
+        },
+        "boundaryMean": 0.24006768428103079,
+        "boundaryMax": 2,
+        "boundaryChannels": 340404
+      },
+      {
+        "state": {
+          "open": 1,
+          "lidBalance": 0
+        },
+        "boundaryMean": 0.0008019882257552791,
+        "boundaryMax": 1,
+        "boundaryChannels": 340404
+      }
+    ],
+    "eyeLocality": {
+      "outsideMax": 0,
+      "insideMean": 56.75489714963399
+    },
+    "facialStability": {
+      "mean": 0.0001300631735414344,
+      "max": 1
+    },
+    "errors": []
+  },
+  "motionTests": {
+    "status": "PASS",
+    "assertions": 2498,
+    "maxVelocityJump": 8.49642578515386e-05,
+    "previousVelocityJump": 6.476578199299254,
+    "newNonlinearClosingSubframes": 10,
+    "maxLowerPathChange": 0.025000000000000022,
+    "closingSeconds": 0.2,
+    "openingSeconds": 0.9,
+    "sourceArtworkRegenerated": false
+  },
+  "oldMoviesUnchanged": true,
+  "reviewScope": "Source and sampled still frames; not a claim of full human playback.",
+  "fullFilmMerged": true
+}

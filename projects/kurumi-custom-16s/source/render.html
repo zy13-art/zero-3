@@ -1,0 +1,30 @@
+<!doctype html><meta charset="utf-8"><title>Kurumi hybrid blink</title>
+<style>html,body{margin:0;height:100%;background:#02050a}#scene{width:100vw;height:100vh}</style>
+<main id="scene"></main>
+<script type="module">
+import {mountScene} from './scene.mjs';
+import {encodeVideo} from './encode-video.mjs';
+import {createEyeRenderer} from './eyes/eye-renderer.mjs';
+import {eyeMotion} from './eyes/smooth-motion.mjs';
+const eye=await createEyeRenderer(document.createElement('canvas'),{patchOnly:true});
+window.eyePatch=eye;window.eyeOverride=null;
+const config={title:'Codex',subtitle:'欢迎来到专业工作模式',englishSubtitle:'YOUR AI CODING COMPANION',durationSeconds:16,exportWidth:3840,exportHeight:2160,exportFps:60,exportBitrate:24000000,liveMaxWidth:3840,backgroundFps:60,reduceMotion:false,
+ paintEyePatch(ctx,t,u,isBg,map){
+  const state=window.eyeOverride||eyeMotion(t,u,isBg,false);eye.draw(state);
+  const [x,y,w,h]=eye.calibration.roi;ctx.save();ctx.imageSmoothingQuality='high';ctx.drawImage(eye.canvas,map.dx+x*map.s,map.dy+y*map.s,w*map.s,h*map.s);ctx.restore();
+ }
+};
+window.scene=mountScene(window,document.querySelector('#scene'),{open:'assets/kurumi-open.png',closed:'assets/kurumi-closed.png',half:'assets/kurumi-half.png'},config,()=>{},eyeMotion);
+window.ready=window.scene.ready;
+window.renderMovie=async(profile='4K60')=>{
+ const spec=profile==='4K60'?{exportWidth:3840,exportHeight:2160,exportFps:60,exportBitrate:24000000}:profile==='1080p120'?{exportWidth:1920,exportHeight:1080,exportFps:120,exportBitrate:18000000}:null;
+ if(!spec)throw Error('Unknown export profile');Object.assign(config,spec);let lastProgress=-1;
+ const result=await window.scene.record((c,render,seconds,progress,options)=>encodeVideo(c,render,seconds,progress,{...options,audio:null}),value=>{if(value%10===0&&value!==lastProgress){lastProgress=value;console.log('EXPORT '+profile+' '+value+'%')}});
+ const response=await fetch('/save-movie?profile='+profile,{method:'POST',headers:{'Content-Type':'video/mp4'},body:result.blob});
+ if(!response.ok)throw Error('Video save failed');
+ return {profile,...spec,seconds:16,bytes:result.blob.size,renderer:window.scene.status()};
+};
+</script>
+
+<div style="position:fixed;right:12px;bottom:12px;z-index:9;background:#10151de8;color:white;padding:10px;font:13px system-ui"><button id="out4k">导出4K60</button> <button id="out120">导出1080p120</button> <span id="exportStatus">导出到项目exports目录</span></div>
+<script>for(const [id,profile] of [['out4k','4K60'],['out120','1080p120']])document.getElementById(id).onclick=async()=>{const buttons=[document.getElementById('out4k'),document.getElementById('out120')],status=document.getElementById('exportStatus');buttons.forEach(b=>b.disabled=true);status.textContent='正在逐帧导出…';try{await window.ready;await window.renderMovie(profile);status.textContent='完成：请查看exports目录';}catch(e){status.textContent=e.message;}finally{buttons.forEach(b=>b.disabled=false);}};</script>
